@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Description>DI and netcore apis concepts unified</Description>
+    <Version>1.0.0-alpha1</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Apps.DependencyInjection" Version="1.0.0-beta5" />
+    <PackageReference Include="NetCore.Apis.Client.Ui" Version="1.0.6" />
+  </ItemGroup>
+
+</Project>

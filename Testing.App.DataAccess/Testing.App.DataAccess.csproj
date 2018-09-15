@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NetCore.Apis.Consumer" Version="1.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Apps.Unified\Apps.Unified.csproj" />
+    <ProjectReference Include="..\Testing.App.Connections\Testing.App.Connections.csproj" />
+    <ProjectReference Include="..\Testing.Core\Testing.Core.csproj" />
+  </ItemGroup>
+
+</Project>

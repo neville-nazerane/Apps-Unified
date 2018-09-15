@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Testing.Apps.Components.BlogEditor">
+    <ContentView.Content>
+        <StackLayout>
+
+            <StackLayout x:Name="errors" />
+
+            <Entry x:Name="url" />
+            <StackLayout x:Name="urlErrors" />
+
+            <Entry x:Name="rating" />
+            <StackLayout x:Name="ratingErrors" />
+
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

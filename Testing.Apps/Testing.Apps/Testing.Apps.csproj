@@ -1,0 +1,46 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NetCore.Apis.XamarinForms" Version="1.0.1" />
+    <PackageReference Include="Xamarin.Forms" Version="3.1.0.697729" />
+    <PackageReference Include="Xamarin.Forms.DependencyInjection" Version="1.0.0-beta5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Apps.Unified\Apps.Unified.csproj" />
+    <ProjectReference Include="..\..\Testing.App.Business\Testing.App.Business.csproj" />
+    <ProjectReference Include="..\..\Testing.App.Connections\Testing.App.Connections.csproj" />
+    <ProjectReference Include="..\..\Testing.App.DataAccess\Testing.App.DataAccess.csproj" />
+    <ProjectReference Include="..\..\Testing.Core\Testing.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Components\BlogEditor.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Components\BlogItem.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Components\BlogList.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\BlogsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\HomePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\MenuPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+</Project>
