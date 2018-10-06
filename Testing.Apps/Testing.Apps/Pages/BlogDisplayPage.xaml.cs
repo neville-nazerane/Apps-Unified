@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Testing.Apps.Controllers;
+using Testing.Core;
 using Xamarin.Forms;
 using Xamarin.Forms.DependencyInjection;
 using Xamarin.Forms.MVC;
@@ -12,17 +13,17 @@ using Xamarin.Forms.Xaml;
 namespace Testing.Apps.Pages
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class MenuPage : ContentPage
-	{
-		public MenuPage ()
+	public partial class BlogDisplayPage : ContentPage, IAccepting<Blog>
+    {
+
+        Blog Blog => this.GetPassedData();
+
+		public BlogDisplayPage ()
 		{
 			InitializeComponent ();
 
-            blog.Clicked += async delegate {
-                await Handler.Simple(c => c.Index());
-               // await Services.NavigateAsync<BlogsPage>();
-            };
+            url.Text = Blog.Url;
 
-        }
+		}
 	}
 }

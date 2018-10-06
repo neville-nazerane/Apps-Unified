@@ -11,6 +11,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.EntityFrameworkCore;
 using Testing.WebAPI.Data;
+using System.IO;
+using Microsoft.AspNetCore.Http;
 
 namespace Testing.WebAPI
 {
@@ -40,7 +42,35 @@ namespace Testing.WebAPI
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseGet("/neville", async context => {
+                await context.Response.WriteAsync("This is neville");
+            });
+
             app.UseMvc();
         }
     }
+
+    public static class Extender
+    {
+        public static IApplicationBuilder UseGet(this IApplicationBuilder app, 
+                                                    PathString path, Func<HttpContext, Task> middleware)
+            => app.Use(async (context, next) => {
+
+                if (context.Request.Path == path && context.Request.Method == "GET")
+                    await middleware(context);
+                else await next();
+            });
+
+        public static IApplicationBuilder UseGet(this IApplicationBuilder app,
+                                                    PathString path, Func<HttpContext, Func<Task>, Task> middleware)
+            => app.Use(async (context, next) => {
+
+                if (context.Request.Path == path && context.Request.Method == "GET")
+                    await middleware(context, next);
+                else await next();
+            });
+    }
+
 }
+
+

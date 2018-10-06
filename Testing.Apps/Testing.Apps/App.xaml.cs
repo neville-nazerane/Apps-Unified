@@ -3,6 +3,7 @@ using Testing.Apps.Helpers;
 using Testing.Apps.Pages;
 using Xamarin.Forms;
 using Xamarin.Forms.DependencyInjection;
+using Xamarin.Forms.MVC;
 using Xamarin.Forms.Xaml;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
@@ -14,9 +15,7 @@ namespace Testing.Apps
         {
             InitializeComponent();
 
-            Services.Configuration = new AppConfig();
-
-            MainPage = new MainPage();
+            MainPage = new MvcConfiguration();
         }
 
         protected override void OnStart()

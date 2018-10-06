@@ -3,10 +3,10 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
-
-  <ItemGroup>
+  
+  <ItemGroup> 
+    <ProjectReference Include="..\..\Apps.DependencyInjection\Xamarin.Forms.DependencyInjection\Xamarin.Forms.DependencyInjection.csproj" /> 
     <ProjectReference Include="..\Apps.Unified\Apps.Unified.csproj" />
-    <ProjectReference Include="..\Testing.App.DataAccess\Testing.App.DataAccess.csproj" />
   </ItemGroup>
 
 </Project>

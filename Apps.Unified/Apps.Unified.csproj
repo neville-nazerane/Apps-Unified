@@ -3,12 +3,13 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <Description>DI and netcore apis concepts unified</Description>
-    <Version>1.0.0-alpha1</Version>
+    <Version>1.0.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Apps.DependencyInjection" Version="1.0.0-beta5" />
-    <PackageReference Include="NetCore.Apis.Client.Ui" Version="1.0.6" />
+    <PackageReference Include="Apps.DependencyInjection" Version="1.0.0" />
+    <PackageReference Include="NetCore.Apis.Client.UI" Version="1.0.6" />
+    <PackageReference Include="NetCore.Apis.Consumer" Version="1.1.0" />
   </ItemGroup>
 
 </Project>
