@@ -9,6 +9,7 @@ using Testing.App.DataAccess;
 using Testing.App.Connections;
 using Xamarin.Forms.MVC;
 using Testing.Apps.Controllers;
+using Xamarin.Forms.MVC.Templates;
 
 namespace Testing.Apps.Helpers
 {

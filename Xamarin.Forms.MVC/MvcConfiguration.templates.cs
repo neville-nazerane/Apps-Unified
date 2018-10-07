@@ -13,12 +13,9 @@ namespace Xamarin.Forms.MVC
     public partial class MvcConfiguration 
     {
 
-        //IMainPage mainPage;
-        //IMenuPage menuPage;
-
         void InitializeTemplates()
         {
-            defaultMenuItemAdder = content => SetupMenuItem(new DefaultMenuItem(), content);
+            defaultMenuItemAdder = content => new DefaultMenuItem().SetContent(content);
         }
 
         protected MenuItemContents MenuItems { get; set; }
@@ -42,56 +39,7 @@ namespace Xamarin.Forms.MVC
         protected void SetMenuItem<TItem>() where TItem : View, IMenuItem, new()
         {
             addMenuItemAsService = services => services.AddTransient<TItem>();
-            defaultMenuItemAdder = content => SetupMenuItem(Services.Get<TItem>(), content);
-        }
-
-        View SetupMenuItem<TItem>(TItem menuItem, MenuItemContent content)
-             where TItem : View, IMenuItem
-        {
-            content.Set(menuItem);
-            return menuItem;
-        }
-
-        protected class MenuItemContents : List<MenuItemContent>
-        {
-
-            public void Add(string title, Func<IActionResponse> linked)
-            {
-                Add(new MenuItemContent {
-                    Text = title,
-                    Linked = () => {
-                        var res = linked();
-                        return Task.FromResult(res);
-                    }
-                });
-            }
-
-            public void Add(string title, Func<Task<IActionResponse>> linked = null)
-            {
-                Add(new MenuItemContent {
-                    Text = title,
-                    Linked = linked
-                });
-            }
-
-        }
-
-        protected class MenuItemContent
-        {
-            public string Text { get; set; }
-
-            public Func<Task<IActionResponse>> Linked { get; set; }
-
-            internal MenuItemContent() { }
-
-            internal void Set(IMenuItem item)
-            {
-                item.Text = Text;
-                if (Linked == null)
-                    item.OnCLick = () => Task.CompletedTask ;
-                else item.OnCLick = Linked;
-            }
-
+            defaultMenuItemAdder = content => Services.Get<TItem>().SetContent(content);
         }
 
         IServiceCollection AddTemplates(IServiceCollection services)
