@@ -14,7 +14,9 @@ namespace Xamarin.Forms.MVC.Templates.Defaults
             Content = contents = new StackLayout();
         }
 
-        public void AddItem<TItem>(TItem item) where TItem : View, IMenuItem => contents.Children.Add(item);
-
+        public void AddItem(View item)
+        {
+            contents.Children.Add(item);
+        }
     }
 }

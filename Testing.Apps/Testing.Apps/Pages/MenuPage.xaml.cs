@@ -19,7 +19,6 @@ namespace Testing.Apps.Pages
 			InitializeComponent ();
 
             blog.Clicked += async delegate {
-                await Handler.Simple(c => c.Index());
                // await Services.NavigateAsync<BlogsPage>();
             };
 

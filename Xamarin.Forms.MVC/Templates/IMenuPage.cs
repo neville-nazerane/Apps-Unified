@@ -7,9 +7,7 @@ namespace Xamarin.Forms.MVC.Templates
     public interface IMenuPage
     {
 
-        void AddItem<TItem>(TItem item)
-            where TItem : View, IMenuItem;
-
+        void AddItem(View item);
 
     }
 }

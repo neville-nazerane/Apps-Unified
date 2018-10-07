@@ -11,9 +11,16 @@ namespace Xamarin.Forms.MVC
     public partial class MvcConfiguration : ServiceConfiguration
     {
 
+        delegate IServiceCollection serviceAdd(IServiceCollection services);
+
+        public MvcConfiguration()
+        {
+            InitializeTemplates();
+        }
 
         public override void ConfigureServices(IServiceCollection services)
         {
+            addMenuItemAsService?.Invoke(services);
             // add all controllers 
         }
 

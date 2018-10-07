@@ -15,7 +15,7 @@ namespace Testing.Apps
         {
             InitializeComponent();
 
-            MainPage = new MvcConfiguration();
+            MainPage = new AppConfig();
         }
 
         protected override void OnStart()

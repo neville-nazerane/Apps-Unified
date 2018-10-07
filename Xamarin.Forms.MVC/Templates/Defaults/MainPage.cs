@@ -20,7 +20,6 @@ namespace Xamarin.Forms.MVC.Templates.Defaults
             });
             Services.NavigationPage = nav;
 
-
             Master = menuPage;
             Detail = nav;
 

@@ -10,7 +10,6 @@ namespace Xamarin.Forms.MVC.Templates.Defaults
 
         public MenuItem()
         {
-
             Clicked += async delegate { await OnCLick(); };
         }
 

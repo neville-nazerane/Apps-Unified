@@ -11,11 +11,9 @@ namespace Xamarin.Forms.MVC
     public partial class MvcConfiguration 
     {
 
-        public TController Fetch<TController>()
+        public static TController Fetch<TController>()
             where TController : Controller
                 => Services.Get<TController>();
-
-        
 
     }
 }
