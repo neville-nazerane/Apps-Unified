@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Testing.App.Business;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Testing.Apps.Components;
 
 namespace Testing.Apps.Pages
 {

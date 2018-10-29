@@ -18,15 +18,15 @@ namespace Testing.Apps.Components
 	{
         public ModelHandler<Blog> Handler { get; }
 
-		public BlogEditor ()
+		public BlogEditor (AppDataStore store)
 		{
 			InitializeComponent ();
 
-            Handler = Services.Get<AppDataStore>().Blog
-                                            .GetModelHandler()
-                                            .BindErrors(errors)
-                                            .Bind(b => b.Url, url, urlErrors)
-                                            .Bind(b => b.Rating, rating, ratingErrors);
+            store.Blog
+                .GetModelHandler()
+                .BindErrors(errors)
+                .Bind(b => b.Url, url, urlErrors)
+                .Bind(b => b.Rating, rating, ratingErrors);
         }
 
     }

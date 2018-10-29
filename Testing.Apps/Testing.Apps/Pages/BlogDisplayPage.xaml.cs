@@ -21,9 +21,10 @@ namespace Testing.Apps.Pages
 		public BlogDisplayPage ()
 		{
 			InitializeComponent ();
-
             url.Text = Blog.Url;
-
 		}
+
+
 	}
+
 }

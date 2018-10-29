@@ -10,24 +10,33 @@ using Testing.App.Connections;
 using Xamarin.Forms.MVC;
 using Testing.Apps.Controllers;
 using Xamarin.Forms.MVC.Templates;
+using Testing.Apps.Components;
+using Xamarin.Forms.MVC.Layouts;
 
-namespace Testing.Apps.Helpers
+namespace Testing.Apps.Config
 {
     class AppConfig : MvcConfiguration
     {
 
-        public static SimpleController Simple => Fetch<SimpleController>();
+        public static SimpleController Simple => Fetch<SimpleController>(); 
 
         public AppConfig()
         {
             MenuItems = new MenuItemContents {
                 { "Home", () => Simple.Index() },
-                { "Empty" }
+                { "Empty" },
+                { "Show Blogs", () => Simple.BlogPage() }
             };
+
+            AddLayoutComponent<ComponentKey, Comp>()
+                                                .Set<BlogList>(ComponentKey.BlogList)
+                                                .Set<BlogEditor>(ComponentKey.BlogEditor);
         }
 
         public override void ConfigureServices(IServiceCollection services)
         {
+            base.ConfigureServices(services);
+
             services
 
                 .AddScoped<SimpleController>()
@@ -38,6 +47,9 @@ namespace Testing.Apps.Helpers
                 .AddSingleton<PostAccess>()
                 .AddSingleton<DataInitializer>()
 
+                .AddTransient<BlogList>()
+                .AddTransient<BlogEditor>()
+
                 .AddScoped<BlogRepository>()
                 .AddScoped<PostRepository>();
         }
@@ -45,8 +57,6 @@ namespace Testing.Apps.Helpers
         public override void OnCreated(IServiceProvider provider) => provider.GetService<DataInitializer>().Init();
 
         public override void ConfigureListeners(ListenerConfiguration configuration) => configuration.Add<AppDataStore>();
-
-
 
     }
 }

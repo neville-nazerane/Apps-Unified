@@ -16,11 +16,13 @@ namespace Xamarin.Forms.MVC
         public MvcConfiguration()
         {
             InitializeTemplates();
+            InitializeLayout();
         }
 
         public override void ConfigureServices(IServiceCollection services)
         {
             addMenuItemAsService?.Invoke(services);
+            AddLayout(services);
             // add all controllers 
         }
 

@@ -1,5 +1,5 @@
 ﻿using System;
-using Testing.Apps.Helpers;
+using Testing.Apps.Config;
 using Testing.Apps.Pages;
 using Xamarin.Forms;
 using Xamarin.Forms.DependencyInjection;

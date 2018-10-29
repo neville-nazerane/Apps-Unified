@@ -13,11 +13,11 @@ namespace Testing.Apps.Components
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class BlogList : ContentView
 	{
-		public BlogList ()
+		public BlogList (AppDataStore store)
 		{
 			InitializeComponent ();
 
-            Services.Get<AppDataStore>().Blogs.OnSet = blogs => {
+            store.Blogs.OnSet = blogs => {
                 if (blogs == null) return;
                 contents.Children.Clear();
                 foreach (var b in blogs)

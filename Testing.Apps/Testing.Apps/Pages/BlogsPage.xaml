@@ -1,16 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:Component="clr-namespace:Testing.Apps.Components"
+             xmlns:Config="clr-namespace:Testing.Apps.Config"
              x:Class="Testing.Apps.Pages.BlogsPage">
     <ContentPage.Content>
 
         <ScrollView Orientation="Vertical">
             <StackLayout>
 
-                <Component:BlogList />
-
-                <Component:BlogEditor />
+                <Config:Comp Key="BlogList" />
+                
+                <Config:Comp Key="BlogEditor" />
 
                 <Button x:Name="submit" 
                         Text="Add or update" />

@@ -12,12 +12,23 @@ namespace Testing.Apps.Controllers
     {
 
         public async Task<IActionResponse> Index()
-            => await ViewAsync<HomePage>();
+        {
+            //await PreLoad(() =>
+            //{
+            //    ProgressMessage = "Hello. I am still trying";
+            //    return Task.CompletedTask;
+            //});
+            return await ViewAsync<HomePage>();
+        }
 
         public async Task<IActionResponse> BlogPage(Blog data)
         {
             if (data == null) return Failed("Invalid data");
             return await ViewAsync<BlogDisplayPage, Blog>(data);
         }
+
+        public async Task<IActionResponse> BlogPage()
+            => await ViewAsync<BlogsPage>();
+
     }
 }
