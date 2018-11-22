@@ -7,9 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Apps.DependencyInjection" Version="1.0.0" />
     <PackageReference Include="NetCore.Apis.Client.UI" Version="1.0.6" />
     <PackageReference Include="NetCore.Apis.Consumer" Version="1.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Apps.DependencyInjection\Apps.DependencyInjection\Apps.DependencyInjection.csproj" />
   </ItemGroup>
 
 </Project>

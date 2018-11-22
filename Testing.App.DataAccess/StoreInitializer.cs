@@ -31,7 +31,6 @@ namespace Testing.App.DataAccess
                                         {
                                             if (s.BlogId == 0) return null;
                                             return (await blogAccess.GetAsync(s.BlogId)).Data;
-
                                         });
 
             initializer.Add(s => s.Posts, async s => (await postAccess.GetAsync()).Data);

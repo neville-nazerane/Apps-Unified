@@ -22,7 +22,7 @@ namespace Xamarin.Forms.MVC
         public override void ConfigureServices(IServiceCollection services)
         {
             addMenuItemAsService?.Invoke(services);
-            AddLayout(services);
+            addLayout(services);
             // add all controllers 
         }
 

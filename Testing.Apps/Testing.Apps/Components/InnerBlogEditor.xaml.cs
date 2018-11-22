@@ -10,18 +10,21 @@ using Xamarin.Forms.Xaml;
 using Testing.App.DataAccess;
 using NetCore.Apis.Client.UI;
 using Testing.Core;
+using Xamarin.Forms.MVC.Components;
 
 namespace Testing.Apps.Components
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class BlogEditor : ContentView
+
+    public class BlogEditor : InjectableComponent<InnerBlogEditor> { }
+
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+	public partial class InnerBlogEditor : ContentView
 	{
         public ModelHandler<Blog> Handler { get; }
 
-		public BlogEditor (AppDataStore store)
+		public InnerBlogEditor (AppDataStore store)
 		{
 			InitializeComponent ();
-
             store.Blog
                 .GetModelHandler()
                 .BindErrors(errors)

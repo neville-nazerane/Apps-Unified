@@ -28,9 +28,9 @@ namespace Testing.Apps.Config
                 { "Show Blogs", () => Simple.BlogPage() }
             };
 
-            AddLayoutComponent<ComponentKey, Comp>()
-                                                .Set<BlogList>(ComponentKey.BlogList)
-                                                .Set<BlogEditor>(ComponentKey.BlogEditor);
+            //AddLayoutComponent<ComponentKey, Comp>()
+            //                                    .Set<InnerBlogList>(ComponentKey.BlogList)
+            //                                    .Set<InnerBlogEditor>(ComponentKey.BlogEditor);
         }
 
         public override void ConfigureServices(IServiceCollection services)
@@ -43,12 +43,15 @@ namespace Testing.Apps.Config
 
                 .AddSingleton<MainConsumer>()
 
+                .AddTransient<InnerBlogList>()
+                .AddTransient<InnerBlogEditor>()
+
                 .AddSingleton<BlogAccess>()
                 .AddSingleton<PostAccess>()
                 .AddSingleton<DataInitializer>()
 
-                .AddTransient<BlogList>()
-                .AddTransient<BlogEditor>()
+                .AddTransient<InnerBlogList>()
+                .AddTransient<InnerBlogEditor>()
 
                 .AddScoped<BlogRepository>()
                 .AddScoped<PostRepository>();

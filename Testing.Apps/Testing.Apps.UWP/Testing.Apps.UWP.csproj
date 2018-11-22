@@ -11,7 +11,7 @@
     <AssemblyName>Testing.Apps.UWP</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
-    <TargetPlatformVersion>10.0.16299.0</TargetPlatformVersion>
+    <TargetPlatformVersion>10.0.17763.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.16299.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <EnableDotNetNativeCompatibleProfile>true</EnableDotNetNativeCompatibleProfile>
@@ -70,7 +70,7 @@
     <OutputPath>bin\x86\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
     <NoWarn>;2008</NoWarn>
-    <DebugType>pdbonly</DebugType>
+    <DebugType>full</DebugType>
     <PlatformTarget>x86</PlatformTarget>
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <ErrorReport>prompt</ErrorReport>
@@ -145,12 +145,20 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="3.1.0.697729" />
-    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.1.5" />
+    <PackageReference Include="Xamarin.Forms" Version="3.4.0.1008975" />
+    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.2.2" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Apps.DependencyInjection\Xamarin.Forms.DependencyInjection\Xamarin.Forms.DependencyInjection.csproj">
+      <Project>{310ad14b-494a-4f5f-9342-d10fc8c0b3d8}</Project>
+      <Name>Xamarin.Forms.DependencyInjection</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Xamarin.Forms.MVC\Xamarin.Forms.MVC.csproj">
+      <Project>{1a577c8c-6f67-4e1e-8faf-482bca7fd187}</Project>
+      <Name>Xamarin.Forms.MVC</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Testing.Apps\Testing.Apps.csproj">
-      <Project>{B6902CC4-F3A2-492B-80BB-8C5697F5B65E}</Project>
+      <Project>{f81f59cf-098c-4b9f-9a28-267900f06c0b}</Project>
       <Name>Testing.Apps</Name>
     </ProjectReference>
   </ItemGroup>

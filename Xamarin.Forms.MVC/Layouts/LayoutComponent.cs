@@ -6,18 +6,18 @@ using Xamarin.Forms.DependencyInjection;
 namespace Xamarin.Forms.MVC.Layouts
 {
 
-    public class LayoutComponent : LayoutComponent<int>
+    public class LayoutComponent : LayoutComponent<LayoutKey>
     {
-        public int Key { set => SetComponent<LayoutComponent>(value); }
     }
 
     public abstract class LayoutComponent<TKey> : ContentView
         where TKey : struct
     {
 
-        protected void SetComponent<TLayout>(TKey key)
-            where TLayout : LayoutComponent<TKey>
-            => Content = Services.Get<LayoutComponentMappings<TKey, TLayout>>()[key]();
+        public TKey Key { set => SetComponent(value); }
+
+        void SetComponent(TKey key)
+            => Content = Services.Get<LayoutComponentMappings<TKey>>()[key]();
 
     }
 }

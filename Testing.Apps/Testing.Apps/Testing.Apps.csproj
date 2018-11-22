@@ -11,10 +11,12 @@
 
   <ItemGroup>
     <PackageReference Include="NetCore.Apis.XamarinForms" Version="1.0.1" />
-    <PackageReference Include="Xamarin.Forms" Version="3.1.0.697729" />
+    <PackageReference Include="Xamarin.Forms" Version="3.4.0.1008975" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Apps.DependencyInjection\Apps.DependencyInjection\Apps.DependencyInjection.csproj" />
+    <ProjectReference Include="..\..\..\Apps.DependencyInjection\Xamarin.Forms.DependencyInjection\Xamarin.Forms.DependencyInjection.csproj" />
     <ProjectReference Include="..\..\Apps.Unified\Apps.Unified.csproj" />
     <ProjectReference Include="..\..\Testing.App.Business\Testing.App.Business.csproj" />
     <ProjectReference Include="..\..\Testing.App.Connections\Testing.App.Connections.csproj" />
@@ -24,13 +26,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Components\BlogEditor.xaml">
+    <EmbeddedResource Update="Components\InnerBlogEditor.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Components\BlogItem.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Components\BlogList.xaml">
+    <EmbeddedResource Update="Components\InnerBlogList.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\BlogDisplayPage.xaml">
@@ -49,5 +51,14 @@
 
   <ItemGroup>
     <Folder Include="Helpers\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Components\InnerBlogEditor.xaml.cs">
+      <DependentUpon>InnerBlogEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Components\InnerBlogList.xaml.cs">
+      <DependentUpon>InnerBlogList.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 </Project>

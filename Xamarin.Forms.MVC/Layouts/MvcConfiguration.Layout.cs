@@ -10,33 +10,24 @@ namespace Xamarin.Forms.MVC
     public partial class MvcConfiguration
     {
 
-        LayoutComponentMappings<int, LayoutComponent> defaultLayoutMapping;
-        serviceAdd layoutComponentAdd;
+        serviceAdd addLayout;
 
         void InitializeLayout()
         {
-            defaultLayoutMapping = new LayoutComponentMappings<int, LayoutComponent>();
-            layoutComponentAdd = services => services.AddScoped<LayoutComponent>()
-                                                             .AddSingleton(defaultLayoutMapping);
+            SetLayoutKey<LayoutKey>();
         }
 
-        public ILayoutConfig<TKey> AddLayoutComponent<TKey, TLayout>()   
+        public MvcConfiguration SetLayoutKey<TKey>()
+            where TKey : struct => SetLayoutKey<TKey, LayoutManager<TKey>>();
+
+        public MvcConfiguration SetLayoutKey<TKey, TManager>()
             where TKey : struct
-            where TLayout : LayoutComponent<TKey>
+            where TManager : LayoutManager<TKey>
         {
-            var old = layoutComponentAdd;
-            var mapping = new LayoutComponentMappings<TKey, TLayout>();
-
-            layoutComponentAdd = services => old(services)
-                                        .AddScoped<TLayout>()
-                                        .AddSingleton(mapping);
-            return mapping;
+            addLayout = services => services.AddScoped<LayoutComponentMappings<TKey>>()
+                                            .AddScoped<TManager>();
+            return this;
         }
-
-        public ILayoutConfig<int> SetComponents() => defaultLayoutMapping;
-         
-        IServiceCollection AddLayout(IServiceCollection services)
-            => layoutComponentAdd(services);
 
     }
 }
