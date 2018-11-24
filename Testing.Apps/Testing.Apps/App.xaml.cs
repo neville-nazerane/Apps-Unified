@@ -28,7 +28,7 @@ namespace Testing.Apps
                         .AddMenuItem("Show Blogs", () => Services.Get<SimpleController>().BlogPage())
 
                         .AddDataStore<AppDataStore>()
-                        //.OnServicesConfigured(provider => provider.GetService<DataInitializer>().Init())
+                        .OnServicesConfigured(provider => provider.GetService<DataInitializer>().Init())
 
                         // services
                         .AddScoped<SimpleController>()
