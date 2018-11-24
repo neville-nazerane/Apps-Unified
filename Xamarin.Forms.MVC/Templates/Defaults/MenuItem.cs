@@ -10,7 +10,10 @@ namespace Xamarin.Forms.MVC.Templates.Defaults
 
         public MenuItem()
         {
-            Clicked += async delegate { await OnCLick(); };
+            string title = Text;
+            Clicked += async delegate {
+                    await OnCLick();
+            };
         }
 
         public Func<Task> OnCLick { private get; set; }

@@ -18,7 +18,8 @@ namespace Testing.Apps.Controllers
             //    ProgressMessage = "Hello. I am still trying";
             //    return Task.CompletedTask;
             //});
-            return await ViewAsync<HomePage>();
+            var res = await ViewAsync<HomePage>();
+            return res;
         }
 
         public async Task<IActionResponse> BlogPage(Blog data)

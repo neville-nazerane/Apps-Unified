@@ -15,51 +15,51 @@ using Xamarin.Forms.MVC.Layouts;
 
 namespace Testing.Apps.Config
 {
-    class AppConfig : MvcConfiguration
-    {
+    //class AppConfig : MvcConfiguration
+    //{
 
-        public static SimpleController Simple => Fetch<SimpleController>(); 
+    //    public static SimpleController Simple => Fetch<SimpleController>(); 
 
-        public AppConfig()
-        {
-            MenuItems = new MenuItemContents {
-                { "Home", () => Simple.Index() },
-                { "Empty" },
-                { "Show Blogs", () => Simple.BlogPage() }
-            };
+    //    public AppConfig()
+    //    {
+    //        MenuItems = new MenuItemContents {
+    //            { "Home", () => Simple.Index() },
+    //            { "Empty" },
+    //            { "Show Blogs", () => Simple.BlogPage() }
+    //        };
 
-            //AddLayoutComponent<ComponentKey, Comp>()
-            //                                    .Set<InnerBlogList>(ComponentKey.BlogList)
-            //                                    .Set<InnerBlogEditor>(ComponentKey.BlogEditor);
-        }
+    //        //AddLayoutComponent<ComponentKey, Comp>()
+    //        //                                    .Set<InnerBlogList>(ComponentKey.BlogList)
+    //        //                                    .Set<InnerBlogEditor>(ComponentKey.BlogEditor);
+    //    }
 
-        public override void ConfigureServices(IServiceCollection services)
-        {
-            base.ConfigureServices(services);
+    //    public override void ConfigureServices(IServiceCollection services)
+    //    {
+    //        base.ConfigureServices(services);
 
-            services
+    //        services
 
-                .AddScoped<SimpleController>()
+    //            .AddScoped<SimpleController>()
 
-                .AddSingleton<MainConsumer>()
+    //            .AddSingleton<MainConsumer>()
 
-                .AddTransient<InnerBlogList>()
-                .AddTransient<InnerBlogEditor>()
+    //            .AddTransient<InnerBlogList>()
+    //            .AddTransient<InnerBlogEditor>()
 
-                .AddSingleton<BlogAccess>()
-                .AddSingleton<PostAccess>()
-                .AddSingleton<DataInitializer>()
+    //            .AddSingleton<BlogAccess>()
+    //            .AddSingleton<PostAccess>()
+    //            .AddSingleton<DataInitializer>()
 
-                .AddTransient<InnerBlogList>()
-                .AddTransient<InnerBlogEditor>()
+    //            .AddTransient<InnerBlogList>()
+    //            .AddTransient<InnerBlogEditor>()
 
-                .AddScoped<BlogRepository>()
-                .AddScoped<PostRepository>();
-        }
+    //            .AddScoped<BlogRepository>()
+    //            .AddScoped<PostRepository>();
+    //    }
 
-        public override void OnCreated(IServiceProvider provider) => provider.GetService<DataInitializer>().Init();
+    //    public override void OnCreated(IServiceProvider provider) => provider.GetService<DataInitializer>().Init();
 
-        public override void ConfigureListeners(ListenerConfiguration configuration) => configuration.Add<AppDataStore>();
+    //    public override void ConfigureListeners(ListenerConfiguration configuration) => configuration.Add<AppDataStore>();
 
-    }
+    //}
 }

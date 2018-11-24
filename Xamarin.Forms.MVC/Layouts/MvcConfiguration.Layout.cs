@@ -10,7 +10,7 @@ namespace Xamarin.Forms.MVC
     public partial class MvcConfiguration
     {
 
-        serviceAdd addLayout;
+        ServiceAdd _addLayout;
 
         void InitializeLayout()
         {
@@ -24,7 +24,7 @@ namespace Xamarin.Forms.MVC
             where TKey : struct
             where TManager : LayoutManager<TKey>
         {
-            addLayout = services => services.AddScoped<LayoutComponentMappings<TKey>>()
+            _addLayout = services => services.AddScoped<LayoutComponentMappings<TKey>>()
                                             .AddScoped<TManager>();
             return this;
         }

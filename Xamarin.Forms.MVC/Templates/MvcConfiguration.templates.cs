@@ -15,7 +15,7 @@ namespace Xamarin.Forms.MVC
 
         void InitializeTemplates()
         {
-            defaultMenuItemAdder = content => new DefaultMenuItem().SetContent(content);
+            _defaultMenuItemAdder = content => new DefaultMenuItem().SetContent(content);
             addLoadingPageAsService = services => services.AddSingleton<ILoadingPage, LoadingPage>()
                                                           .AddSingleton<LoadingPage>();
             templateUtilities = new TemplateUtilities {
@@ -23,9 +23,9 @@ namespace Xamarin.Forms.MVC
             };
         }
 
-        protected MenuItemContents MenuItems { get; set; }
+        readonly MenuItemContents _menuItems;
 
-        serviceAdd addLoadingPageAsService;
+        ServiceAdd addLoadingPageAsService;
         TemplateUtilities templateUtilities;
         protected void LoadPage<TPage>() where TPage : Page, ILoadingPage
         {
@@ -34,41 +34,40 @@ namespace Xamarin.Forms.MVC
             templateUtilities.StartLoading = async () => await Services.NavigateAsync<TPage>();
         }
 
-        Func<IMainPage> getCustomMainPage;
+        Func<IMainPage> _getCustomMainPage;
         protected void SetMainPage<TPage>() where TPage : Page, IMainPage
         {
-            getCustomMainPage = () => Services.Get<TPage>();
+            _getCustomMainPage = () => Services.Get<TPage>();
         }
 
-        Func<IMenuPage> getCustomMenuPage;
+        Func<IMenuPage> _getCustomMenuPage;
         protected void SetMenuPage<TPage>() where TPage : Page, IMenuPage
         {
-            getCustomMenuPage = () => Services.Get<TPage>();
+            _getCustomMenuPage = () => Services.Get<TPage>();
         }
 
-        Func<MenuItemContent, View> defaultMenuItemAdder;
-        serviceAdd addMenuItemAsService;
-        protected void SetMenuItem<TItem>() where TItem : View, IMenuItem
+        Func<MenuItemContent, View> _defaultMenuItemAdder;
+        ServiceAdd _addMenuItemAsService;
+        public void SetMenuItemComponet<TItem>() where TItem : View, IMenuItem
         {
-            addMenuItemAsService = services => services.AddTransient<TItem>();
-            defaultMenuItemAdder = content => Services.Get<TItem>().SetContent(content);
+            _addMenuItemAsService = services => services.AddTransient<TItem>();
+            _defaultMenuItemAdder = content => Services.Get<TItem>().SetContent(content);
         }
 
-        IServiceCollection AddTemplates(IServiceCollection services)
+        void AddTemplates(IServiceCollection services)
         {
-            services.AddSingleton(getCustomMenuPage());
-            services.AddSingleton(getCustomMainPage());
+            services.AddSingleton(_getCustomMenuPage());
+            services.AddSingleton(_getCustomMainPage());
             addLoadingPageAsService?.Invoke(services);
-            return addMenuItemAsService(services);
+            _addMenuItemAsService(services);
         }
 
         Page BuildPage()
         {
-            var menu = getCustomMenuPage?.Invoke() ?? new MenuPage();
-            var page = getCustomMainPage?.Invoke() ?? new MainPage(menu as Page);
-            if (MenuItems != null)
-                foreach (var item in MenuItems)
-                    menu.AddItem(defaultMenuItemAdder(item));
+            var menu = _getCustomMenuPage?.Invoke() ?? new MenuPage();
+            var page = _getCustomMainPage?.Invoke() ?? new MainPage(menu as Page);
+            foreach (var item in _menuItems)
+                menu.AddItem(_defaultMenuItemAdder(item));
             return page as Page;
         }
 
